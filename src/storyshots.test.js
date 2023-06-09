@@ -6,7 +6,7 @@ initStoryshots({
   test: imageSnapshot({
     storybookUrl: 'http://localhost:6008',
     beforeScreenshot: async (page) => {
-      await page.waitForTimeout(1000); // wait for 1 second
+      await page.waitForTimeout(3000); // wait for 1 second
     },
   }),
 });
