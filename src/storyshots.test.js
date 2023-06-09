@@ -3,7 +3,7 @@ import { imageSnapshot } from '@storybook/addon-storyshots-puppeteer';
 
 const getScreenshotOptions = () => {
   return {
-    delay: 500, // delay in milliseconds
+    delay: 3000, // delay in milliseconds
   };
 };
 
