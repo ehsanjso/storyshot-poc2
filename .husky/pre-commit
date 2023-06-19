@@ -3,6 +3,4 @@
 # ...
 yarn test || echo SUCCESS
 
-git add .
-git commit -m "diff snapshots" --no-verify
 # exit 1 # Commit will be aborted
