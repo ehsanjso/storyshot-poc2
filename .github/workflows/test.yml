@@ -7,15 +7,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-
-    - name: Use Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
-
-    - name: Install dependencies
-      run: yarn install
-
-    - name: Run tests
-      run: yarn test
+      - uses: trstringer/manual-approval@v1
+        with:
+          secret: ${{ github.TOKEN }}
+          approvers: ehsanjso
+          minimum-approvals: 1
+          issue-title: "Deploying v1.3.5 to prod from staging"
+          issue-body: "Please approve or deny the deployment of version v1.3.5."
+          exclude-workflow-initiator-as-approver: false
+          additional-approved-words: ""
+          additional-denied-words: ""
