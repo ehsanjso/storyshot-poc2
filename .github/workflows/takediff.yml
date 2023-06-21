@@ -30,3 +30,4 @@ jobs:
             npx http-server --port=6008 ./storybook-static &
             sleep 10
             npm run test || echo SUCCESS
+            git add .
