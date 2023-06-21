@@ -1,4 +1,4 @@
-name: Test
+name: Gihub Approval
 
 on: [pull_request]
 
