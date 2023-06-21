@@ -9,4 +9,4 @@ jobs:
         uses: christeredvartsen/slack-deployer/send-slack-message@master
         with:
           slackToken: ${{ secrets.SLACK_BOT_TOKEN }}
-          slackChannel: "#some-channel"
+          slackChannel: "pr-mock"
