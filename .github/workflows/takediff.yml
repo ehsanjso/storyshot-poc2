@@ -19,7 +19,7 @@ jobs:
         run: npm i
 
       - name: Run storybook
-        run: npm run storybook || echo SUCCESS
+        run: npm run storybook&
 
       - name: Run tests
         run: npm run test || echo SUCCESS
