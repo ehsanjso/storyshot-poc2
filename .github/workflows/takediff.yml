@@ -30,4 +30,9 @@ jobs:
             npx http-server --port=6008 ./storybook-static &
             sleep 10
             npm run test || echo SUCCESS
-            git add .
+
+      - name: Commit and push changes
+        uses: devops-infra/action-commit-push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          commit_message: Add screenshots
