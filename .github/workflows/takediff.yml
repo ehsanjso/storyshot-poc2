@@ -18,8 +18,15 @@ jobs:
       - name: Install dependencies
         run: npm i
 
-      - name: Run storybook
-        run: npm run storybook&
+      - name: Build storybook
+        run: npm run build-storybook
 
-      - name: Run tests
-        run: sleep 10 && npm run test || echo SUCCESS
+      - name: Perform e2e tests with Heaful Puppeteer
+        uses: maufrontier/puppeteer-headful@v3
+        env:
+          CI: "true"
+        with:
+          commands: |
+            npx http-server --port=6008 ./storybook-static &
+            sleep 10
+            npm run test || echo SUCCESS
