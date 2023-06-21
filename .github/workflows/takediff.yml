@@ -37,6 +37,10 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           commit_message: Add screenshots
 
+  approval:
+        needs: build-and-test
+        runs-on: ubuntu-latest
+        
       - name: send approval
         uses: varu3/slack-approval@main
         env:
