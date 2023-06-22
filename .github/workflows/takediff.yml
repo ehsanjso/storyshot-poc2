@@ -7,8 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
+          ref: ${{ github.head_ref }}
           fetch-depth: 0
           ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
@@ -37,12 +38,7 @@ jobs:
             npm run test || echo SUCCESS
 
       - name: Commit and push changes
-        uses: devops-infra/action-commit-push@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          amend: true
-          no_edit: true
-          force: true
+        uses: stefanzweifel/git-auto-commit-action@v4
 
   approval:
     runs-on: ubuntu-latest
