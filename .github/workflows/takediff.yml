@@ -51,6 +51,7 @@ jobs:
 
   approval:
     runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'Apply automatic changes')"
     needs: build-and-test
 
     steps:
