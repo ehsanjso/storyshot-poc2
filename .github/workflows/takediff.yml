@@ -1,6 +1,14 @@
 name: Take diff
 
-on: [push]
+on:
+  push:
+    branches-ignore:
+      - "main"
+
+# This is what will cancel the workflow
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build-and-test:
