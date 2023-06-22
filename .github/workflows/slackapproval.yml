@@ -1,0 +1,26 @@
+name: Approval Slack
+
+on:
+  push:
+    branches-ignore:
+      - "main"
+
+# This is what will cancel the workflow
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  approval:
+    if: "contains(github.event.head_commit.message, 'Apply automatic changes')"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: send approval
+        uses: varu3/slack-approval@main
+        env:
+          SLACK_APP_TOKEN: ${{ secrets.SLACK_APP_TOKEN }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          SLACK_SIGNING_SECRET: ${{ secrets.SLACK_SIGNING_SECRET }}
+          SLACK_CHANNEL_ID: ${{ secrets.SLACK_CHANNEL_ID }}
+        timeout-minutes: 10
