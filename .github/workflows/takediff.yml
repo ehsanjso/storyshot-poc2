@@ -51,8 +51,21 @@ jobs:
 
   approval:
     runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, 'Apply automatic changes')"
     needs: build-and-test
+
+    steps:
+      - name: send approval
+        uses: varu3/slack-approval@main
+        env:
+          SLACK_APP_TOKEN: ${{ secrets.SLACK_APP_TOKEN }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          SLACK_SIGNING_SECRET: ${{ secrets.SLACK_SIGNING_SECRET }}
+          SLACK_CHANNEL_ID: ${{ secrets.SLACK_CHANNEL_ID }}
+        timeout-minutes: 10
+
+  approval-2:
+    runs-on: ubuntu-latest
+    if: "contains(github.event.head_commit.message, 'Apply automatic changes')"
 
     steps:
       - name: send approval
