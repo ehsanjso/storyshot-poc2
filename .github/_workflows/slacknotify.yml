@@ -1,0 +1,12 @@
+# name: Notify Slack 2
+# on: [push]
+# jobs:
+#   notify:
+#     name: Post a message to Slack
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Post message
+#         uses: christeredvartsen/slack-deployer/send-slack-message@master
+#         with:
+#           slackToken: ${{ secrets.SLACK_BOT_TOKEN }}
+#           slackChannel: "pr-mock"
